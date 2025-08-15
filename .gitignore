@@ -1,0 +1,22 @@
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Cachés de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Base de datos local
+*.db
+*.sqlite3
+
+# Logs y archivos temporales
+*.log
+.DS_Store
+
+# Archivos de configuración local
+instance/
+.webassets-cache

@@ -20,6 +20,12 @@
     </header>
 
     <div class="main-content">
+        {% if is_demo %}
+        <div class="demo-banner">
+            <strong>ENTORNO DE DEMOSTRACIÓN</strong> - Esta es una versión de demostración con datos ficticios.
+        </div>
+        {% endif %}
+        
         <div class="dashboard-container">
             <div class="welcome-header">
                 <div>

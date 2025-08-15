@@ -490,3 +490,16 @@ input:focus {
         grid-template-columns: 1fr;
     }
 }
+
+/* Banner de demostración */
+.demo-banner {
+    background-color: #ffe066;
+    color: #664d00;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #e6c300;
+}
