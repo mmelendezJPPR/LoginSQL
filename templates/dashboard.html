@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Junta de Planificación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="{{ url_for('static', filename='images/JPlogo.png') }}" alt="Junta de Planificación" class="jp-logo">
+            </div>
+            <div class="header-right">
+                <img src="{{ url_for('static', filename='images/JP_V2.png') }}" alt="Junta de Planificación" class="jpV2-logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="dashboard-container">
+            <div class="welcome-header">
+                <div>
+                    <h1>Bienvenido, {{ username }}</h1>
+                    <p>Panel de control del sistema de la Junta de Planificación</p>
+                </div>
+                <a href="/logout" class="logout-link">Cerrar Sesión</a>
+            </div>
+            
+            <div class="card-grid">
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Estadísticas</h3>
+                    <p class="card-description">Ver estadísticas y reportes del sistema</p>
+                </a>
+                
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Configuración</h3>
+                    <p class="card-description">Ajustar preferencias del sistema</p>
+                </a>
+                
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">📁</div>
+                    <h3 class="card-title">Documentos</h3>
+                    <p class="card-description">Gestionar documentos y archivos</p>
+                </a>
+                
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Usuarios</h3>
+                    <p class="card-description">Administrar usuarios del sistema</p>
+                </a>
+                
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">📅</div>
+                    <h3 class="card-title">Calendario</h3>
+                    <p class="card-description">Ver eventos y programación</p>
+                </a>
+                
+                <a href="#" class="card" onclick="alert('Función en desarrollo')">
+                    <div class="card-icon">🔔</div>
+                    <h3 class="card-title">Notificaciones</h3>
+                    <p class="card-description">Centro de notificaciones del sistema</p>
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; padding: 20px 0; border-top: 1px solid #eaeaea;">
+                <p>Sistema de Gestión - Junta de Planificación de Puerto Rico</p>
+                <p style="font-size: 12px; margin-top: 5px;">© 2025 Todos los derechos reservados</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

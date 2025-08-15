@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Junta de Planificación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="{{ url_for('static', filename='images/JPlogo.png') }}" alt="Junta de Planificación" class="jp-logo">
+            </div>
+            <div class="header-right">
+                <img src="{{ url_for('static', filename='images/JP_V2.png') }}" alt="Junta de Planificación" class="jpV2-logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="login-container">
+            <div class="header">
+                <div class="logo"></div>
+                <h1 class="title">Iniciar Sesión</h1>
+                <p class="subtitle">Junta de Planificación de Puerto Rico</p>
+            </div>
+
+            <!-- Mensajes Flash para notificaciones -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <div class="input-container">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Ingrese su usuario"
+                            required
+                        >
+                        <span class="input-icon">👤</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-container">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Ingrese su contraseña"
+                            required
+                        >
+                        <span class="input-icon">🔒</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-button">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="#" onclick="alert('Funcionalidad de recuperación de contraseña')">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <div class="divider">
+                <span>Acceso Seguro</span>
+            </div>
+
+            <div class="footer-text">
+                Sistema de acceso oficial del<br>
+                <strong>Gobierno de Puerto Rico</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
