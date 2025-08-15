@@ -1,7 +1,4 @@
-flask
-gunicorn
-flask_sqlalchemy
-psycopg2-binary    # si vas a Postgres
-# pyodbc + SQLAlchemy si usas SQL Server externo:
-# pyodbc
-# SQLAlchemy
+flask==2.3.3
+werkzeug==2.3.7
+python-dotenv==1.0.0
+gunicorn==21.2.0

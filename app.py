@@ -1,12 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash
-import pyodbc
 import logging
 import os
+import sqlite3
 from dotenv import load_dotenv
 
 # Cargar variables de entorno
 load_dotenv()
+
+# Determinar si estamos en Render
+IS_RENDER = os.getenv('RENDER', False)
+
+# Solo importar pyodbc si no estamos en Render
+if not IS_RENDER:
+    try:
+        import pyodbc
+    except ImportError:
+        logging.warning("pyodbc no está disponible. Las conexiones a SQL Server no funcionarán.")
 
 # Configuración del logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,9 +32,6 @@ USE_WINDOWS_AUTH = os.getenv('DB_WINDOWS_AUTH', 'True').lower() == 'true'
 USERNAME = os.getenv('DB_USER', '')
 PASSWORD = os.getenv('DB_PASSWORD', '')
 
-# Determinar si estamos en Render
-IS_RENDER = os.getenv('RENDER', False)
-
 def get_db_connection():
     """Establece y devuelve una conexión a la base de datos"""
     # Si estamos en Render, usar SQLite para demostración
@@ -36,6 +43,10 @@ def get_db_connection():
 def get_sqlserver_connection():
     """Conexión a SQL Server (para desarrollo local)"""
     try:
+        if 'pyodbc' not in globals():
+            logger.error("pyodbc no está disponible. No se puede conectar a SQL Server.")
+            return None
+            
         if USE_WINDOWS_AUTH:
             conn_str = f'DRIVER={{SQL Server}};SERVER={SERVER};DATABASE={DATABASE};Trusted_Connection=yes;'
         else:
@@ -43,15 +54,16 @@ def get_sqlserver_connection():
         
         conn = pyodbc.connect(conn_str)
         return conn
-    except pyodbc.Error as e:
+    except Exception as e:
         logger.error(f"Error al conectar a la base de datos SQL Server: {e}")
         return None
 
 def get_sqlite_connection():
     """Conexión a SQLite (para demostración en Render)"""
     try:
-        import sqlite3
-        conn = sqlite3.connect('/tmp/demo_users.db')
+        # En Render, usar un directorio que sea persistente
+        db_path = os.path.join(os.getcwd(), 'demo_users.db')
+        conn = sqlite3.connect(db_path)
         conn.row_factory = sqlite3.Row
         
         # Inicializar la base de demostración si no existe
