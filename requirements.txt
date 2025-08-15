@@ -1,0 +1,7 @@
+flask
+gunicorn
+flask_sqlalchemy
+psycopg2-binary    # si vas a Postgres
+# pyodbc + SQLAlchemy si usas SQL Server externo:
+# pyodbc
+# SQLAlchemy

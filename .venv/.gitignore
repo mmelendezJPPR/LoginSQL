@@ -1,4 +1,4 @@
-# .gitignore
+*# .gitignore
 config.py
 .env
 *.db
